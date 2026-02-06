@@ -1,6 +1,5 @@
 import {
     User2,
-    List as ListView,
     Package,
     Menu,
     X,
@@ -76,7 +75,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const navItems: NavItem[] = [
         { icon: Package, label: "Announcements", href: "/announcements" },
         { icon: Package, label: "Notifications", href: "/notifications" },
-        { icon: ListView, label: "Categories", href: "/categories" },
+        // { icon: ListView, label: "Categories", href: "/categories" },
         { icon: Package, label: "Districts", href: "/districts" },
         { icon: User2, label: "Users", href: "/users" },
         { icon: User2, label: "Staff", href: "/staff" },
