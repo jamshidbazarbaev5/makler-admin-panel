@@ -1,0 +1,275 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "create": "Yaratish",
+    "back": "Orqaga",
+    "search": "Qidirish",
+    "filter": "Filtr",
+    "actions": "Harakatlar",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "active": "Faol",
+    "inactive": "Nofaol",
+    "all": "Barchasi",
+    "submit": "Yuborish",
+    "confirm": "Tasdiqlash",
+    "close": "Yopish",
+    "creating": "Yaratilmoqda...",
+    "saving": "Saqlanmoqda...",
+    "deleting": "O'chirilmoqda...",
+    "total": "Jami",
+    "read": "O'qilgan",
+    "unread": "O'qilmagan",
+    "sent": "Yuborilgan",
+    "pending": "Kutilmoqda",
+    "order": "Tartib"
+  },
+  "navigation": {
+    "dashboard": "Boshqaruv paneli",
+    "announcements": "E'lonlar",
+    "categories": "Kategoriyalar",
+    "users": "Foydalanuvchilar",
+    "staff": "Xodimlar",
+    "districts": "Tumanlar",
+    "notifications": "Bildirishnomalar",
+    "settings": "Sozlamalar",
+    "app_settings": "Ilova sozlamalari",
+    "logout": "Chiqish"
+  },
+  "forms": {
+    "id": "ID",
+    "username": "Foydalanuvchi nomi",
+    "full_name": "To'liq ism",
+    "phone": "Telefon",
+    "email": "Email",
+    "password": "Parol",
+    "confirm_password": "Parolni tasdiqlang",
+    "new_password": "Yangi parol",
+    "role": "Rol",
+    "status": "Holat",
+    "category_name": "Kategoriya nomi",
+    "attributes": "Atributlar",
+    "created_at": "Yaratilgan sana",
+    "updated_at": "Yangilangan sana",
+    "title": "Sarlavha",
+    "message": "Xabar",
+    "type": "Turi"
+  },
+  "placeholders": {
+    "search": "Qidirish...",
+    "search_user": "Foydalanuvchilarni qidirish...",
+    "search_staff": "Xodimlarni qidirish...",
+    "search_announcements": "E'lonlarni qidirish...",
+    "search_districts": "Tumanlarni qidirish...",
+    "search_notifications": "Bildirishnomalarni qidirish...",
+    "search_category": "Kategoriyalarni qidirish...",
+    "enter_name": "Nomni kiriting",
+    "enter_username": "Foydalanuvchi nomini kiriting",
+    "enter_password": "Parolni kiriting",
+    "enter_full_name": "To'liq ismni kiriting"
+  },
+  "messages": {
+    "success": {
+      "created": "{{item}} muvaffaqiyatli yaratildi",
+      "updated": "{{item}} muvaffaqiyatli yangilandi",
+      "deleted": "{{item}} muvaffaqiyatli o'chirildi",
+      "password_changed": "Parol muvaffaqiyatli o'zgartirildi",
+      "status_changed": "Holat muvaffaqiyatli o'zgartirildi"
+    },
+    "error": {
+      "title": "Xatolik",
+      "load_failed": "Ma'lumotlarni yuklashda xatolik",
+      "save_failed": "Saqlashda xatolik",
+      "delete_failed": "O'chirishda xatolik",
+      "not_found": "Topilmadi",
+      "required_field": "{{field}} maydoni to'ldirilishi shart"
+    },
+    "confirm": {
+      "delete": "O'chirishni tasdiqlaysizmi?",
+      "deactivate": "Nofaol qilishni tasdiqlaysizmi?",
+      "activate": "Faollashtirshni tasdiqlaysizmi?"
+    },
+    "no_data": "Ma'lumot yo'q"
+  },
+  "staff": {
+    "title": "Xodimlarni boshqarish",
+    "create": "Xodim yaratish",
+    "edit": "Xodimni tahrirlash",
+    "change_password": "Parolni o'zgartirish",
+    "change_password_for": "Parolni o'zgartirish:",
+    "toggle_active": "Holatni o'zgartirish",
+    "deactivate": "Nofaol qilish",
+    "activate": "Faollashtirish",
+    "deactivate_confirm": "Bu foydalanuvchi tizimga kira olmaydi.",
+    "activate_confirm": "Bu foydalanuvchi yana tizimga kira oladi.",
+    "role_admin": "Administrator",
+    "role_moderator": "Moderator",
+    "superuser": "Superfoydalanuvchi",
+    "basic_info": "Asosiy ma'lumotlar",
+    "basic_info_desc": "Xodim ma'lumotlarini kiriting",
+    "security": "Xavfsizlik",
+    "security_desc": "Akkaunt uchun parol o'rnating",
+    "account_status": "Hisob holati",
+    "account_info": "Hisob ma'lumotlari",
+    "last_login": "Oxirgi kirish",
+    "add_new": "Yangi administrator yoki moderator qo'shish"
+  },
+  "users": {
+    "title": "Foydalanuvchilar",
+    "agent": "Agent",
+    "statistics": "Statistika",
+    "properties": "Ob'ektlar",
+    "views": "Ko'rishlar",
+    "contact_info": "Aloqa ma'lumotlari",
+    "preferred_language": "Afzal til",
+    "bio": "O'zi haqida",
+    "account_details": "Hisob tafsilotlari",
+    "created_at": "Ro'yxatdan o'tgan sana",
+    "updated_at": "Yangilangan sana",
+    "is_agent": "Agent holati",
+    "is_active": "Hisob holati"
+  },
+  "announcements": {
+    "title": "E'lonlar",
+    "property_type": "Ko'chmas mulk turi",
+    "listing_type": "E'lon turi",
+    "price": "Narx",
+    "area": "Maydon",
+    "seller": "Sotuvchi",
+    "views": "Ko'rishlar",
+    "status": {
+      "draft": "Qoralama",
+      "pending": "Moderatsiyada",
+      "active": "Faol",
+      "rejected": "Rad etilgan",
+      "inactive": "Nofaol",
+      "sold": "Sotilgan"
+    },
+    "property_types": {
+      "apartment": "Kvartira",
+      "house": "Uy",
+      "commercial": "Tijorat",
+      "land": "Yer uchastkasi"
+    },
+    "listing_types": {
+      "sale": "Sotish",
+      "rent": "Ijara"
+    },
+    "all_status": "Barcha holatlar",
+    "all_property_types": "Barcha turlar",
+    "all_listing_types": "Barcha e'lon turlari"
+  },
+  "categories": {
+    "title": "Kategoriyalar",
+    "create": "Kategoriya yaratish",
+    "edit": "Kategoriyani tahrirlash"
+  },
+  "districts": {
+    "title": "Tumanlar",
+    "create": "Tuman yaratish",
+    "edit": "Tumanni tahrirlash",
+    "name_ru": "Nomi (RU)",
+    "name_uz": "Nomi (UZ)",
+    "name_kk": "Nomi (KK)"
+  },
+  "notifications": {
+    "title": "Bildirishnomalar",
+    "user": "Foydalanuvchi",
+    "all_types": "Barcha turlar",
+    "all_status": "Barcha holatlar",
+    "types": {
+      "post_rejected": "E'lon rad etildi",
+      "post_approved": "E'lon tasdiqlandi",
+      "post_published": "E'lon nashr etildi",
+      "payment_received": "To'lov qabul qilindi",
+      "info": "Ma'lumot",
+      "warning": "Ogohlantirish",
+      "error": "Xatolik"
+    }
+  },
+  "auth": {
+    "login": "Kirish",
+    "logout": "Chiqish",
+    "login_title": "Akkauntga kirish",
+    "login_subtitle": "Kirish uchun ma'lumotlarni kiriting",
+    "logging_in": "Kirilmoqda..."
+  },
+  "app_settings": {
+    "title": "Ilova sozlamalari",
+    "subtitle": "Ilova parametrlarini sozlang",
+    "loading": "Sozlamalar yuklanmoqda...",
+    "load_failed": "Sozlamalarni yuklashda xatolik",
+    "save_success": "Sozlamalar muvaffaqiyatli saqlandi!",
+    "payment": {
+      "title": "To'lov sozlamalari",
+      "subtitle": "E'lonlar uchun to'lov parametrlarini sozlang",
+      "enabled": "To'lov yoqilgan",
+      "enabled_desc": "Pullik e'lonlarni yoqish",
+      "featured_enabled": "VIP yoqilgan",
+      "featured_enabled_desc": "VIP/tanlangan postlarni yoqish",
+      "post_price": "E'lon narxi",
+      "featured_price": "VIP narxi"
+    },
+    "duration": {
+      "title": "Muddat sozlamalari",
+      "subtitle": "E'lonlarning faollik muddatini belgilang",
+      "post_days": "E'lon muddati (kun)",
+      "featured_days": "VIP muddati (kun)",
+      "expiry_notification": "Tugash haqida bildirishnoma (kun)"
+    },
+    "moderation": {
+      "title": "Moderatsiya sozlamalari",
+      "subtitle": "Kontent moderatsiya parametrlarini sozlang",
+      "require": "Moderatsiya talab qilinadi",
+      "require_desc": "Nashr qilishdan oldin postlarni tekshirish",
+      "auto_deactivate": "Muddati o'tganlarni avtomatik o'chirish",
+      "auto_deactivate_desc": "Muddati o'tgan postlarni avtomatik o'chirish"
+    },
+    "limits": {
+      "title": "Limitlar",
+      "subtitle": "Foydalanuvchi kontenti uchun cheklovlarni belgilang",
+      "max_images": "Har bir e'longa maksimal rasmlar",
+      "max_drafts": "Maksimal qoralamalar"
+    },
+    "contact": {
+      "title": "Aloqa ma'lumotlari",
+      "subtitle": "Administrator aloqa ma'lumotlari",
+      "admin_phone": "Administrator telefoni"
+    },
+    "save": "Sozlamalarni saqlash"
+  },
+  "announcement_detail": {
+    "back": "E'lonlarga qaytish",
+    "loading": "E'lon yuklanmoqda...",
+    "error": "E'lonni yuklashda xatolik",
+    "not_found": "E'lon topilmadi",
+    "no_images": "Rasmlar yo'q",
+    "featured": "Tanlangan",
+    "property_details": "Ob'ekt tafsilotlari",
+    "type": "Turi",
+    "listing": "E'lon turi",
+    "area": "Maydon",
+    "rooms": "Xonalar",
+    "floor": "Qavat",
+    "building": "Bino",
+    "condition": "Holati",
+    "price": "Narx",
+    "views": "ko'rishlar",
+    "saved": "saqlangan",
+    "contact_info": "Aloqa ma'lumotlari",
+    "seller_name": "Sotuvchi ismi",
+    "phone": "Telefon",
+    "alt_phone": "Muqobil telefon",
+    "moderation_status": "Moderatsiya holati",
+    "moderated": "Tekshirilgan",
+    "pending_review": "Tekshirish kutilmoqda",
+    "dates": "Sanalar",
+    "created": "Yaratilgan",
+    "updated": "Yangilangan",
+    "expires": "Tugaydi"
+  }
+}
