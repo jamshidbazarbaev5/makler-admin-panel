@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { fetchAnnouncementById, type Announcement } from '../api/announcements';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import {
   ArrowLeft,
   MapPin,
@@ -24,7 +27,21 @@ import {
   Loader2,
   AlertCircle,
   BadgeCheck,
+  X,
+  Maximize2,
 } from 'lucide-react';
+
+// Fix for default marker icon in Leaflet with Vite/Webpack
+const defaultIcon = L.icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+L.Marker.prototype.options.icon = defaultIcon;
 
 export default function AnnouncementDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -34,6 +51,7 @@ export default function AnnouncementDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
 
   useEffect(() => {
     const loadAnnouncement = async () => {
@@ -156,20 +174,30 @@ export default function AnnouncementDetailPage() {
                     <>
                       <button
                         onClick={prevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-background/90 hover:bg-background rounded-full shadow-lg transition-all"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 rounded-full shadow-lg transition-all"
                       >
-                        <ChevronLeft size={24} className="text-foreground" />
+                        <ChevronLeft size={28} className="text-white" />
                       </button>
                       <button
                         onClick={nextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-background/90 hover:bg-background rounded-full shadow-lg transition-all"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 hover:bg-black/70 rounded-full shadow-lg transition-all"
                       >
-                        <ChevronRight size={24} className="text-foreground" />
+                        <ChevronRight size={28} className="text-white" />
                       </button>
 
-                      {/* Image Counter */}
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/60 text-white rounded-full text-sm font-medium">
-                        {currentImageIndex + 1} / {announcement.images.length}
+                      {/* Slider Dots */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 bg-black/60 rounded-full">
+                        {announcement.images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`w-2.5 h-2.5 rounded-full transition-all ${
+                              index === currentImageIndex
+                                ? 'bg-white w-6'
+                                : 'bg-white/50 hover:bg-white/80'
+                            }`}
+                          />
+                        ))}
                       </div>
                     </>
                   )}
@@ -314,12 +342,72 @@ export default function AnnouncementDetailPage() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">{t('announcement_detail.condition')}</p>
-                      <p className="font-semibold text-foreground capitalize">{announcement.condition}</p>
+                      <p className="font-semibold text-foreground">{t(`announcements.conditions.${announcement.condition}`) || announcement.condition}</p>
                     </div>
                   </div>
                 )}
               </div>
             </div>
+
+            {/* Map Section */}
+            {announcement.latitude && announcement.longitude && !isMapModalOpen && (
+              <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
+                <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                    <MapPin size={20} className="text-primary" />
+                    {t('announcement_detail.location') || 'Location'}
+                  </h2>
+                  <button
+                    onClick={() => setIsMapModalOpen(true)}
+                    className="p-2 hover:bg-muted rounded-lg transition-colors"
+                    title={t('common.fullscreen') || 'Fullscreen'}
+                  >
+                    <Maximize2 size={18} className="text-muted-foreground" />
+                  </button>
+                </div>
+                <div
+                  className="h-[300px] w-full cursor-pointer"
+                  onClick={() => setIsMapModalOpen(true)}
+                >
+                  <MapContainer
+                    key="preview-map"
+                    center={[parseFloat(announcement.latitude), parseFloat(announcement.longitude)]}
+                    zoom={15}
+                    style={{ height: '100%', width: '100%' }}
+                    scrollWheelZoom={false}
+                  >
+                    <TileLayer
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[parseFloat(announcement.latitude), parseFloat(announcement.longitude)]}>
+                      <Popup>
+                        <div className="text-sm">
+                          <p className="font-semibold">{announcement.title}</p>
+                          <p className="text-gray-600">{districtName}</p>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  </MapContainer>
+                </div>
+              </div>
+            )}
+
+            {/* Map Placeholder when modal is open */}
+            {announcement.latitude && announcement.longitude && isMapModalOpen && (
+              <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
+                <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                    <MapPin size={20} className="text-primary" />
+                    {t('announcement_detail.location') || 'Location'}
+                  </h2>
+                </div>
+                <div className="h-[300px] w-full bg-muted/50 flex items-center justify-center">
+                  <p className="text-muted-foreground">{t('announcement_detail.map_open') || 'Map is open in fullscreen'}</p>
+                </div>
+              </div>
+            )}
+
           </div>
 
           {/* Right Column - Price & Info Cards */}
@@ -481,6 +569,49 @@ export default function AnnouncementDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Map Modal */}
+      {isMapModalOpen && announcement.latitude && announcement.longitude && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh] bg-card rounded-2xl overflow-hidden">
+            <div className="absolute top-4 right-4 z-[1000]">
+              <button
+                onClick={() => setIsMapModalOpen(false)}
+                className="p-2 bg-background/90 hover:bg-background rounded-full shadow-lg transition-colors"
+              >
+                <X size={24} className="text-foreground" />
+              </button>
+            </div>
+            <div className="absolute top-4 left-4 z-[1000] bg-background/90 rounded-xl p-3 shadow-lg">
+              <p className="font-semibold text-foreground">{announcement.title}</p>
+              <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
+                <MapPin size={14} />
+                {districtName}
+              </p>
+            </div>
+            <MapContainer
+              key="modal-map"
+              center={[parseFloat(announcement.latitude), parseFloat(announcement.longitude)]}
+              zoom={16}
+              style={{ height: '100%', width: '100%' }}
+              scrollWheelZoom={true}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[parseFloat(announcement.latitude), parseFloat(announcement.longitude)]}>
+                <Popup>
+                  <div className="text-sm">
+                    <p className="font-semibold">{announcement.title}</p>
+                    <p className="text-gray-600">{districtName}</p>
+                  </div>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

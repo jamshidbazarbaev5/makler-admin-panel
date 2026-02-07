@@ -1,14 +1,30 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { ResourceTable } from '../helpers/ResourceTable';
-import { type User, useGetUsers } from '../api/users';
+import { type User, useGetUsers, toggleUserActive } from '../api/users';
 
 export default function UsersPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [togglingUserId, setTogglingUserId] = useState<number | null>(null);
+
+  const handleToggleActive = async (user: User, e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      setTogglingUserId(user.id);
+      await toggleUserActive(user.id);
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+    } catch (error) {
+      console.error('Error toggling user status:', error);
+    } finally {
+      setTogglingUserId(null);
+    }
+  };
 
   const columns = [
     {
@@ -47,9 +63,17 @@ export default function UsersPage() {
       header: t('forms.status'),
       accessorKey: 'is_active',
       cell: (row: any) => (
-        <span className={row.is_active ? 'text-green-600 font-medium' : 'text-red-600'}>
-          {row.is_active ? t('common.active') : t('common.inactive')}
-        </span>
+        <button
+          onClick={(e) => handleToggleActive(row, e)}
+          disabled={togglingUserId === row.id}
+          className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+            row.is_active
+              ? 'bg-green-100 text-green-700 hover:bg-green-200'
+              : 'bg-red-100 text-red-700 hover:bg-red-200'
+          } ${togglingUserId === row.id ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+        >
+          {togglingUserId === row.id ? '...' : (row.is_active ? t('common.active') : t('common.inactive'))}
+        </button>
       ),
     },
     {

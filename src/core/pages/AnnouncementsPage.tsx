@@ -15,22 +15,41 @@ export default function AnnouncementsPage() {
 
   const columns = [
     {
-      header: t('forms.id'),
-      accessorKey: 'id',
-      cell: (row: any) => row.id.substring(0, 8) + '...',
+      header: t('forms.created_at'),
+      accessorKey: 'created_at',
+      cell: (row: any) => new Date(row.created_at).toLocaleDateString(),
+    },
+    {
+      header: t('forms.image') || 'Фото',
+      accessorKey: 'images',
+      cell: (row: any) => (
+        <div className="w-12 h-12 rounded-full overflow-hidden bg-muted flex-shrink-0">
+          {row.images && row.images.length > 0 ? (
+            <img
+              src={row.images[0]?.image_small_url || row.images[0]?.image_url}
+              alt={row.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+          )}
+        </div>
+      ),
     },
     {
       header: t('forms.title'),
       accessorKey: 'title',
       cell: (row: any) => (
-        <div className="max-w-xs truncate">{row.title}</div>
+        <div className="max-w-[150px] truncate" title={row.title}>{row.title}</div>
       ),
     },
     {
       header: t('announcements.property_type'),
       accessorKey: 'property_type',
       cell: (row: any) => (
-        <span className="capitalize">
+        <span>
           {t(`announcements.property_types.${row.property_type}`) || row.property_type || 'N/A'}
         </span>
       ),
@@ -89,11 +108,6 @@ export default function AnnouncementsPage() {
     {
       header: t('announcements.views'),
       accessorKey: 'views_count',
-    },
-    {
-      header: t('forms.created_at'),
-      accessorKey: 'created_at',
-      cell: (row: any) => new Date(row.created_at).toLocaleDateString(),
     },
   ];
 
@@ -191,6 +205,7 @@ export default function AnnouncementsPage() {
             <option value="">{t('announcements.all_listing_types')}</option>
             <option value="sale">{t('announcements.listing_types.sale')}</option>
             <option value="rent">{t('announcements.listing_types.rent')}</option>
+            <option value="rent_daily">{t('announcements.listing_types.rent_daily')}</option>
           </select>
         </div>
       </div>
@@ -199,7 +214,7 @@ export default function AnnouncementsPage() {
         data={enhancedAnnouncements}
         columns={columns}
         isLoading={isLoading}
-        onEdit={handleEdit as any}
+        onRowClick={handleEdit as any}
         totalCount={(announcementsData as any)?.count || enhancedAnnouncements.length}
         pageSize={(announcementsData as any)?.page_size || 30}
         currentPage={currentPage}

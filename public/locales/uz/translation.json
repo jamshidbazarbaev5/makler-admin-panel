@@ -26,7 +26,10 @@
     "unread": "O'qilmagan",
     "sent": "Yuborilgan",
     "pending": "Kutilmoqda",
-    "order": "Tartib"
+    "order": "Tartib",
+    "profile": "Profil",
+    "logout": "Chiqish",
+    "fullscreen": "To'liq ekran"
   },
   "navigation": {
     "dashboard": "Boshqaruv paneli",
@@ -57,7 +60,8 @@
     "updated_at": "Yangilangan sana",
     "title": "Sarlavha",
     "message": "Xabar",
-    "type": "Turi"
+    "type": "Turi",
+    "image": "Rasm"
   },
   "placeholders": {
     "search": "Qidirish...",
@@ -151,13 +155,22 @@
     },
     "property_types": {
       "apartment": "Kvartira",
-      "house": "Uy",
+      "house": "Uchastka/Kottej/Dacha",
       "commercial": "Tijorat",
       "land": "Yer uchastkasi"
     },
     "listing_types": {
       "sale": "Sotish",
-      "rent": "Ijara"
+      "rent": "Ijara",
+      "rent_daily": "Kunlik ijara"
+    },
+    "conditions": {
+      "euro_repair": "Yevrota'mir",
+      "cosmetic": "Kosmetik ta'mir",
+      "needs_repair": "Ta'mir talab qiladi",
+      "capital": "Kapital ta'mir",
+      "no_repair": "Ta'mir kerak emas",
+      "design": "Dizayner ta'miri"
     },
     "all_status": "Barcha holatlar",
     "all_property_types": "Barcha turlar",

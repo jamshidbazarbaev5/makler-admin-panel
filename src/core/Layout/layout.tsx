@@ -73,27 +73,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     // Only include routes that exist in App.tsx
     const navItems: NavItem[] = [
-        { icon: Package, label: "Announcements", href: "/announcements" },
-        { icon: Package, label: "Notifications", href: "/notifications" },
-        // { icon: ListView, label: "Categories", href: "/categories" },
-        { icon: Package, label: "Districts", href: "/districts" },
-        { icon: User2, label: "Users", href: "/users" },
-        { icon: User2, label: "Staff", href: "/staff" },
-        { icon: Package, label: "App Settings", href: "/settings/app" },
+        { icon: Package, label: t("navigation.announcements"), href: "/announcements" },
+        { icon: Package, label: t("navigation.notifications"), href: "/notifications" },
+        // { icon: ListView, label: t("navigation.categories"), href: "/categories" },
+        // { icon: Package, label: t("navigation.districts"), href: "/districts" },
+        { icon: User2, label: t("navigation.users"), href: "/users" },
+        { icon: User2, label: t("navigation.staff"), href: "/staff" },
+        { icon: Package, label: t("navigation.app_settings"), href: "/settings/app" },
     ];
 
     return (
         <div className="h-screen bg-background flex flex-col overflow-x-hidden">
             {/* Mobile Header */}
             <header className="md:hidden bg-background shadow-sm px-4 py-2 flex items-center justify-between fixed top-0 left-0 right-0 z-50">
-                <div className="flex items-center gap-2">
-                    <img
-                        src="/smart-sawda.png"
-                        alt="Smart Sawda Logo"
-                        className="h-10 w-auto"
-                    />
-                    {/*<div className="font-semibold text-foreground">Stock-control</div>*/}
-                </div>
+               
                 <div className="flex items-center gap-3">
                     {/* Mobile Profile Dropdown */}
                     <div className="relative" ref={dropdownRef}>
@@ -224,16 +217,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     {/* Desktop Logo and Language Switcher */}
                     <div className="hidden md:block px-6 py-6 border-b border-border bg-muted/50">
                         <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <img
-                                    src="/smart-sawda.png"
-                                    alt="Smart Sawda Logo"
-                                    className="h-10 w-auto"
-                                />
-
-
-
-                            </div>
+                          
                             <button
                                 onClick={() => setIsCollapsed(!isCollapsed)}
                                 className="p-2 rounded-lg hover:bg-muted transition-colors"

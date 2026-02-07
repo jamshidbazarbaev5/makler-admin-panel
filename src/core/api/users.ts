@@ -79,3 +79,9 @@ export const fetchUserById = async (id: number): Promise<User> => {
   const response = await api.get<User>(`${USERS_URL}${id}/`);
   return response.data;
 };
+
+// Function to toggle user active status
+export const toggleUserActive = async (id: number): Promise<User> => {
+  const response = await api.post<User>(`${USERS_URL}${id}/toggle_active/`);
+  return response.data;
+};

@@ -26,7 +26,10 @@
     "unread": "Оқылмаған",
     "sent": "Жиберилген",
     "pending": "Күтилмекте",
-    "order": "Тәртип"
+    "order": "Тәртип",
+    "profile": "Профиль",
+    "logout": "Шығыў",
+    "fullscreen": "Толық экран"
   },
   "navigation": {
     "dashboard": "Басқарыў панели",
@@ -57,7 +60,8 @@
     "updated_at": "Жаңаланған сәне",
     "title": "Тема",
     "message": "Хабар",
-    "type": "Түри"
+    "type": "Түри",
+    "image": "Сүўрет"
   },
   "placeholders": {
     "search": "Излеў...",
@@ -151,13 +155,22 @@
     },
     "property_types": {
       "apartment": "Квартира",
-      "house": "Үй",
+      "house": "Участка/Коттедж/Дача",
       "commercial": "Коммерциялық",
       "land": "Жер участкасы"
     },
     "listing_types": {
       "sale": "Сатыў",
-      "rent": "Ижара"
+      "rent": "Ижара",
+      "rent_daily": "Күнлик ижара"
+    },
+    "conditions": {
+      "euro_repair": "Евроремонт",
+      "cosmetic": "Косметикалық ремонт",
+      "needs_repair": "Ремонт талап етиледи",
+      "capital": "Капитал ремонт",
+      "no_repair": "Ремонт керек емес",
+      "design": "Дизайнерлик ремонт"
     },
     "all_status": "Барлық статуслар",
     "all_property_types": "Барлық түрлер",

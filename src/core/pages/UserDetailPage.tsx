@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { fetchUserById, type User } from '../api/users';
+import { fetchUserById, toggleUserActive, type User } from '../api/users';
 import {
   ArrowLeft,
   User as UserIcon,
@@ -26,6 +26,23 @@ export default function UserDetailPage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [toggling, setToggling] = useState(false);
+
+  const handleToggleActive = async () => {
+    if (!user) return;
+    try {
+      setToggling(true);
+      await toggleUserActive(user.id);
+      // Reload user data after toggle
+      const updatedUser = await fetchUserById(user.id);
+      setUser(updatedUser);
+    } catch (err: any) {
+      console.error('Error toggling user status:', err);
+      alert(err?.response?.data?.detail || err?.message || 'Failed to toggle user status');
+    } finally {
+      setToggling(false);
+    }
+  };
 
   useEffect(() => {
     const loadUser = async () => {
@@ -100,14 +117,24 @@ export default function UserDetailPage() {
               <ArrowLeft size={20} />
               <span className="hidden sm:inline">{t('common.back')} {t('navigation.users')}</span>
             </button>
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm ${
-              user.is_active
-                ? 'bg-emerald-500/20 text-emerald-400'
-                : 'bg-red-500/20 text-red-400'
-            }`}>
-              {user.is_active ? <CheckCircle size={16} /> : <XCircle size={16} />}
+            <button
+              onClick={handleToggleActive}
+              disabled={toggling}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-colors cursor-pointer ${
+                user.is_active
+                  ? 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30'
+                  : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+              } ${toggling ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {toggling ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : user.is_active ? (
+                <CheckCircle size={16} />
+              ) : (
+                <XCircle size={16} />
+              )}
               {user.is_active ? t('common.active') : t('common.inactive')}
-            </div>
+            </button>
           </div>
         </div>
       </div>
