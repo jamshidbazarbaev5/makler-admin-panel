@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Check, X } from 'lucide-react';
 import { ResourceTable } from '../helpers/ResourceTable';
-import { type Announcement, useGetAnnouncements } from '../api/announcements';
+import { type Announcement, useGetAnnouncements, useModerateAnnouncement } from '../api/announcements';
 
 export default function AnnouncementsPage() {
   const navigate = useNavigate();
@@ -12,6 +13,13 @@ export default function AnnouncementsPage() {
   const [statusFilter, setStatusFilter] = useState('');
   const [listingTypeFilter, setListingTypeFilter] = useState('');
   const [propertyTypeFilter, setPropertyTypeFilter] = useState('');
+  const [moderateModalOpen, setModerateModalOpen] = useState(false);
+  const [moderateAction, setModerateAction] = useState<'approve' | 'reject' | null>(null);
+  const [selectedAnnouncementId, setSelectedAnnouncementId] = useState<string | null>(null);
+  const [rejectionReason, setRejectionReason] = useState('');
+
+  const moderateMutation = useModerateAnnouncement();
+
 
   const columns = [
     {
@@ -109,6 +117,28 @@ export default function AnnouncementsPage() {
       header: t('announcements.views'),
       accessorKey: 'views_count',
     },
+    {
+      header: t('forms.actions'),
+      accessorKey: 'actions',
+      cell: (row: any) => (
+        <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+          <button
+            onClick={() => handleOpenModerateModal(row.id, 'approve')}
+            className="p-1 rounded hover:bg-green-100 text-green-600"
+            title={t('announcements.approve')}
+          >
+            <Check size={18} />
+          </button>
+          <button
+            onClick={() => handleOpenModerateModal(row.id, 'reject')}
+            className="p-1 rounded hover:bg-red-100 text-red-600"
+            title={t('announcements.reject')}
+          >
+            <X size={18} />
+          </button>
+        </div>
+      ),
+    },
   ];
 
   const { data: announcementsData, isLoading } = useGetAnnouncements({
@@ -143,6 +173,35 @@ export default function AnnouncementsPage() {
     ...announcement,
     displayId: index + 1
   })) as any;
+
+  const handleOpenModerateModal = (id: string, action: 'approve' | 'reject') => {
+    setSelectedAnnouncementId(id);
+    setModerateAction(action);
+    setRejectionReason('');
+    setModerateModalOpen(true);
+  };
+
+  const handleModerate = () => {
+    if (selectedAnnouncementId && moderateAction) {
+      const payload: { action: 'approve' | 'reject'; rejection_reason?: string } = {
+        action: moderateAction,
+      };
+      if (moderateAction === 'reject') {
+        payload.rejection_reason = rejectionReason;
+      }
+      moderateMutation.mutate(
+        { id: selectedAnnouncementId, payload },
+        {
+          onSuccess: () => {
+            setModerateModalOpen(false);
+            setSelectedAnnouncementId(null);
+            setModerateAction(null);
+            setRejectionReason('');
+          }
+        }
+      );
+    }
+  };
 
   const handleEdit = (announcement: Announcement) => {
     navigate(`/announcements/${announcement.id}`);
@@ -220,6 +279,51 @@ export default function AnnouncementsPage() {
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
+
+      {/* Moderation Modal */}
+      {moderateModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-lg font-bold mb-4">
+              {moderateAction === 'approve'
+                ? t('announcements.approve_announcement')
+                : t('announcements.reject_announcement')}
+            </h2>
+            {moderateAction === 'approve' ? (
+              <p className="text-gray-600 mb-4">{t('announcements.approve_confirmation')}</p>
+            ) : (
+              <textarea
+                className="w-full p-2 border rounded mb-4"
+                rows={4}
+                placeholder={t('announcements.rejection_reason_placeholder')}
+                value={rejectionReason}
+                onChange={(e) => setRejectionReason(e.target.value)}
+              />
+            )}
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setModerateModalOpen(false)}
+                className="px-4 py-2 border rounded hover:bg-gray-100"
+              >
+                {t('forms.cancel')}
+              </button>
+              <button
+                onClick={handleModerate}
+                disabled={moderateMutation.isPending}
+                className={`px-4 py-2 text-white rounded disabled:opacity-50 ${
+                  moderateAction === 'approve'
+                    ? 'bg-green-500 hover:bg-green-600'
+                    : 'bg-red-500 hover:bg-red-600'
+                }`}
+              >
+                {moderateAction === 'approve'
+                  ? t('announcements.approve')
+                  : t('announcements.reject')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

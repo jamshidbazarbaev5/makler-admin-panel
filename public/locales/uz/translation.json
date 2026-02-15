@@ -174,7 +174,11 @@
     },
     "all_status": "Barcha holatlar",
     "all_property_types": "Barcha turlar",
-    "all_listing_types": "Barcha e'lon turlari"
+    "all_listing_types": "Barcha e'lon turlari",
+    "approve": "Tasdiqlash",
+    "reject": "Rad etish",
+    "reject_announcement": "E'lonni rad etish",
+    "rejection_reason_placeholder": "Rad etish sababini kiriting..."
   },
   "categories": {
     "title": "Kategoriyalar",

@@ -174,7 +174,11 @@
     },
     "all_status": "Барлық статуслар",
     "all_property_types": "Барлық түрлер",
-    "all_listing_types": "Барлық хабарландырыў түрлери"
+    "all_listing_types": "Барлық хабарландырыў түрлери",
+    "approve": "Тастыйықлаў",
+    "reject": "Рад етиў",
+    "reject_announcement": "Хабарландырыўды рад етиў",
+    "rejection_reason_placeholder": "Рад етиў себебин киргизиң..."
   },
   "categories": {
     "title": "Категориялар",

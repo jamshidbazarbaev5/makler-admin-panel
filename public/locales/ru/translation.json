@@ -44,7 +44,9 @@
     "logout": "Выйти"
   },
   "forms": {
+    "cancel":"Отмена",
     "id": "ID",
+    "actions":"Действия",
     "username": "Имя пользователя",
     "full_name": "Полное имя",
     "phone": "Телефон",
@@ -138,6 +140,7 @@
     "is_active": "Статус аккаунта"
   },
   "announcements": {
+
     "title": "Объявления",
     "property_type": "Тип недвижимости",
     "listing_type": "Тип объявления",
@@ -146,6 +149,7 @@
     "seller": "Продавец",
     "views": "Просмотры",
     "status": {
+      "rented":"Арендованный",
       "draft": "Черновик",
       "pending": "На модерации",
       "active": "Активно",
@@ -174,7 +178,13 @@
     },
     "all_status": "Все статусы",
     "all_property_types": "Все типы",
-    "all_listing_types": "Все типы объявлений"
+    "all_listing_types": "Все типы объявлений",
+    "approve": "Одобрить",
+    "reject": "Отклонить",
+    "reject_announcement": "Отклонить объявление",
+    "approve_announcement": "Одобрить объявление",
+    "approve_confirmation": "Вы уверены, что хотите одобрить это объявление?",
+    "rejection_reason_placeholder": "Укажите причину отклонения..."
   },
   "categories": {
     "title": "Категории",

@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createResourceApiHooks } from '../helpers/createResourceApi'
 import api from './api'
 
@@ -111,6 +112,27 @@ export const fetchAnnouncementsWithPagination = async (
 export const fetchAnnouncementById = async (id: string): Promise<Announcement> => {
   const response = await api.get<Announcement>(`${ANNOUNCEMENTS_URL}${id}/`);
   return response.data;
+};
+
+// Moderation types
+export interface ModerateAnnouncementPayload {
+  action: 'approve' | 'reject';
+  rejection_reason?: string;
+}
+
+// Hook for moderating announcements
+export const useModerateAnnouncement = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ id, payload }: { id: string | number; payload: ModerateAnnouncementPayload }) => {
+      const response = await api.post<Announcement>(`${ANNOUNCEMENTS_URL}${id}/moderate/`, payload);
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['announcements'] });
+    },
+  });
 };
 
 // Function to fetch all announcements across all pages
