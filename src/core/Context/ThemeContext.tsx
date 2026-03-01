@@ -30,18 +30,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
                                                                 storageKey = 'app-theme',
                                                             }) => {
     const [theme, setThemeState] = useState<Theme>(() => {
-        // Check if we're in the browser
-        if (typeof window !== 'undefined') {
-            const stored = localStorage.getItem(storageKey);
-            if (stored === 'light' || stored === 'dark') {
-                return stored;
-            }
-            // Check system preference
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                return 'dark';
-            }
-        }
-        return defaultTheme;
+        // Force light theme only
+        return 'light';
     });
 
     const setTheme = (newTheme: Theme) => {
@@ -56,11 +46,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     useEffect(() => {
         const root = window.document.documentElement;
 
-        // Remove previous theme classes
-        root.classList.remove('light', 'dark');
-
-        // Add current theme class
-        root.classList.add(theme);
+        // Force light theme only
+        root.classList.remove('dark');
+        root.classList.add('light');
     }, [theme]);
 
     const value = {

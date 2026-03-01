@@ -164,6 +164,14 @@
       "rent": "Ижара",
       "rent_daily": "Күнлик ижара"
     },
+    "building_types": {
+      "new": "Жаңа имарат",
+      "old": "Ески имарат"
+    },
+    "area_units": {
+      "sqm": "м²",
+      "sotix": "сотох"
+    },
     "conditions": {
       "euro_repair": "Евроремонт",
       "cosmetic": "Косметикалық ремонт",
@@ -178,7 +186,20 @@
     "approve": "Тастыйықлаў",
     "reject": "Рад етиў",
     "reject_announcement": "Хабарландырыўды рад етиў",
-    "rejection_reason_placeholder": "Рад етиў себебин киргизиң..."
+    "rejection_reason_placeholder": "Рад етиў себебин киргизиң...",
+    "promotion_payment": "Жәрнама ҳәм төлем",
+    "promotion_type": "Жәрнама түри",
+    "payment_status": "Төлем статусы",
+    "promotion_types": {
+      "standard": "Стандарт",
+      "top": "ТОП",
+      "vip": "VIP"
+    },
+    "payment_statuses": {
+      "paid": "Төленген",
+      "unpaid": "Төленбеген",
+      "pending": "Төлем күтилмекте"
+    }
   },
   "categories": {
     "title": "Категориялар",
@@ -283,6 +304,7 @@
     "alt_phone": "Альтернатив телефон",
     "moderation_status": "Модерация статусы",
     "moderated": "Тексерилген",
+    "moderated_by": "тәрепинен",
     "pending_review": "Тексериў күтилмекте",
     "dates": "Сәнелер",
     "created": "Жаратылған",

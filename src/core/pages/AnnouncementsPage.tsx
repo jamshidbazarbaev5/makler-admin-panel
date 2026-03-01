@@ -31,16 +31,23 @@ export default function AnnouncementsPage() {
       header: t('forms.image') || 'Фото',
       accessorKey: 'images',
       cell: (row: any) => (
-        <div className="w-12 h-12 rounded-full overflow-hidden bg-muted flex-shrink-0">
-          {row.images && row.images.length > 0 ? (
-            <img
-              src={row.images[0]?.image_small_url || row.images[0]?.image_url}
-              alt={row.title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div className="relative w-12 h-12 flex-shrink-0">
+          <div className="w-12 h-12 rounded-full overflow-hidden bg-muted">
+            {row.images && row.images.length > 0 ? (
+              <img
+                src={row.images[0]?.image_small_url || row.images[0]?.image_url}
+                alt={row.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+            )}
+          </div>
+          {row.promotion_type === 'top' && (
+            <div className="absolute -top-1 -right-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow-lg z-10">
+              TOP
             </div>
           )}
         </div>
@@ -85,7 +92,7 @@ export default function AnnouncementsPage() {
       accessorKey: 'area',
       cell: (row: any) => (
         <div>
-          {row.area} {row.area_unit}
+          {row.area} {t(`announcements.area_units.${row.area_unit}`) || row.area_unit}
         </div>
       ),
     },
@@ -122,20 +129,26 @@ export default function AnnouncementsPage() {
       accessorKey: 'actions',
       cell: (row: any) => (
         <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-          <button
-            onClick={() => handleOpenModerateModal(row.id, 'approve')}
-            className="p-1 rounded hover:bg-green-100 text-green-600"
-            title={t('announcements.approve')}
-          >
-            <Check size={18} />
-          </button>
-          <button
-            onClick={() => handleOpenModerateModal(row.id, 'reject')}
-            className="p-1 rounded hover:bg-red-100 text-red-600"
-            title={t('announcements.reject')}
-          >
-            <X size={18} />
-          </button>
+          {row.status === 'pending' ? (
+            <>
+              <button
+                onClick={() => handleOpenModerateModal(row.id, 'approve')}
+                className="p-1 rounded hover:bg-green-100 text-green-600"
+                title={t('announcements.approve')}
+              >
+                <Check size={18} />
+              </button>
+              <button
+                onClick={() => handleOpenModerateModal(row.id, 'reject')}
+                className="p-1 rounded hover:bg-red-100 text-red-600"
+                title={t('announcements.reject')}
+              >
+                <X size={18} />
+              </button>
+            </>
+          ) : (
+            <span className="text-gray-400 text-sm">-</span>
+          )}
         </div>
       ),
     },

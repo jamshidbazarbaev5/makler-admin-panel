@@ -168,6 +168,14 @@
       "rent": "Аренда",
       "rent_daily": "Посуточная аренда"
     },
+    "building_types": {
+      "new": "Новостройка",
+      "old": "Вторичка"
+    },
+    "area_units": {
+      "sqm": "м²",
+      "sotix": "соток"
+    },
     "conditions": {
       "euro_repair": "Евроремонт",
       "cosmetic": "Косметический ремонт",
@@ -184,7 +192,20 @@
     "reject_announcement": "Отклонить объявление",
     "approve_announcement": "Одобрить объявление",
     "approve_confirmation": "Вы уверены, что хотите одобрить это объявление?",
-    "rejection_reason_placeholder": "Укажите причину отклонения..."
+    "rejection_reason_placeholder": "Укажите причину отклонения...",
+    "promotion_payment": "Продвижение и оплата",
+    "promotion_type": "Тип продвижения",
+    "payment_status": "Статус оплаты",
+    "promotion_types": {
+      "standard": "Стандарт",
+      "top": "ТОП",
+      "vip": "VIP"
+    },
+    "payment_statuses": {
+      "paid": "Оплачено",
+      "unpaid": "Не оплачено",
+      "pending": "Ожидает оплаты"
+    }
   },
   "categories": {
     "title": "Категории",
@@ -289,6 +310,7 @@
     "alt_phone": "Альтернативный телефон",
     "moderation_status": "Статус модерации",
     "moderated": "Проверено",
+    "moderated_by": "от",
     "pending_review": "Ожидает проверки",
     "dates": "Даты",
     "created": "Создано",

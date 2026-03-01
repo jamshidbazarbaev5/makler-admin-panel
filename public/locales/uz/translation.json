@@ -164,6 +164,14 @@
       "rent": "Ijara",
       "rent_daily": "Kunlik ijara"
     },
+    "building_types": {
+      "new": "Yangi bino",
+      "old": "Eski bino"
+    },
+    "area_units": {
+      "sqm": "m²",
+      "sotix": "sotix"
+    },
     "conditions": {
       "euro_repair": "Yevrota'mir",
       "cosmetic": "Kosmetik ta'mir",
@@ -178,7 +186,20 @@
     "approve": "Tasdiqlash",
     "reject": "Rad etish",
     "reject_announcement": "E'lonni rad etish",
-    "rejection_reason_placeholder": "Rad etish sababini kiriting..."
+    "rejection_reason_placeholder": "Rad etish sababini kiriting...",
+    "promotion_payment": "Reklama va to'lov",
+    "promotion_type": "Reklama turi",
+    "payment_status": "To'lov holati",
+    "promotion_types": {
+      "standard": "Standart",
+      "top": "TOP",
+      "vip": "VIP"
+    },
+    "payment_statuses": {
+      "paid": "To'langan",
+      "unpaid": "To'lanmagan",
+      "pending": "To'lov kutilmoqda"
+    }
   },
   "categories": {
     "title": "Kategoriyalar",
@@ -283,6 +304,7 @@
     "alt_phone": "Muqobil telefon",
     "moderation_status": "Moderatsiya holati",
     "moderated": "Tekshirilgan",
+    "moderated_by": "tomonidan",
     "pending_review": "Tekshirish kutilmoqda",
     "dates": "Sanalar",
     "created": "Yaratilgan",

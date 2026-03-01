@@ -74,7 +74,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     // Only include routes that exist in App.tsx
     const navItems: NavItem[] = [
         { icon: Package, label: t("navigation.announcements"), href: "/announcements" },
-        { icon: Package, label: t("navigation.notifications"), href: "/notifications" },
+        // { icon: Package, label: t("navigation.notifications"), href: "/notifications" },
         // { icon: ListView, label: t("navigation.categories"), href: "/categories" },
         // { icon: Package, label: t("navigation.districts"), href: "/districts" },
         { icon: User2, label: t("navigation.users"), href: "/users" },
