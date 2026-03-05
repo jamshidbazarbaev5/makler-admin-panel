@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import {
     BarChart,
     Bar,
-    LineChart,
-    Line,
     PieChart,
     Pie,
     Cell,
@@ -18,7 +16,7 @@ import {
     Area,
     AreaChart,
 } from 'recharts';
-import { Users, FileText, Clock, DollarSign, Calendar, TrendingUp, ArrowUpRight, ArrowDownRight, SlidersHorizontal } from 'lucide-react';
+import { Users, FileText, Clock, DollarSign, TrendingUp, SlidersHorizontal } from 'lucide-react';
 import { Input } from '../../components/ui/input';
 import { Button } from '../../components/ui/button';
 import { Skeleton } from '../../components/ui/skeleton';
@@ -65,7 +63,7 @@ const cardVariants = {
     visible: (i: number) => ({
         opacity: 1,
         y: 0,
-        transition: { delay: i * 0.08, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+        transition: { delay: i * 0.08, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
     }),
 };
 
@@ -202,7 +200,7 @@ const DashboardPage = () => {
         },
         {
             label: t('dashboard.total_revenue'),
-            value: `$${data.summary.total_revenue.toLocaleString()}`,
+            value: `${data.summary.total_revenue.toLocaleString()} сум  `,
             icon: DollarSign,
             gradient: 'from-violet-500 to-purple-600',
             bgLight: 'bg-violet-50',
