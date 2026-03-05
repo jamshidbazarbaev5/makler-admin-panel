@@ -318,5 +318,23 @@
     "expires": "Истекает",
     "location": "Местоположение",
     "map_open": "Карта открыта в полноэкранном режиме"
+  },
+  "dashboard": {
+    "title": "Панель управления",
+    "year": "Год",
+    "date_from": "Дата с",
+    "date_to": "Дата по",
+    "pending_moderation": "На модерации",
+    "total_revenue": "Общий доход",
+    "revenue_by_month": "Доход по месяцам",
+    "users_growth": "Рост пользователей",
+    "announcements_by_status": "Объявления по статусу",
+    "announcements_by_property_type": "Объявления по типу недвижимости",
+    "top_districts": "Топ районов",
+    "post_revenue": "Доход от объявлений",
+    "featured_revenue": "Доход от VIP",
+    "new_users": "Новые пользователи",
+    "no_data": "Нет данных",
+    "count": "Количество"
   }
 }

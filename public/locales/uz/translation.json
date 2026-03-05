@@ -310,5 +310,23 @@
     "created": "Yaratilgan",
     "updated": "Yangilangan",
     "expires": "Tugaydi"
+  },
+  "dashboard": {
+    "title": "Boshqaruv paneli",
+    "year": "Yil",
+    "date_from": "Sanadan",
+    "date_to": "Sanagacha",
+    "pending_moderation": "Moderatsiyada",
+    "total_revenue": "Umumiy daromad",
+    "revenue_by_month": "Oylar bo'yicha daromad",
+    "users_growth": "Foydalanuvchilar o'sishi",
+    "announcements_by_status": "Holat bo'yicha e'lonlar",
+    "announcements_by_property_type": "Ko'chmas mulk turi bo'yicha e'lonlar",
+    "top_districts": "Top tumanlar",
+    "post_revenue": "E'lonlardan daromad",
+    "featured_revenue": "VIP dan daromad",
+    "new_users": "Yangi foydalanuvchilar",
+    "no_data": "Ma'lumot yo'q",
+    "count": "Soni"
   }
 }

@@ -310,5 +310,23 @@
     "created": "Жаратылған",
     "updated": "Жаңаланған",
     "expires": "Тамамланады"
+  },
+  "dashboard": {
+    "title": "Басқарыў панели",
+    "year": "Жыл",
+    "date_from": "Сәнеден",
+    "date_to": "Сәнеге шекем",
+    "pending_moderation": "Модерацияда",
+    "total_revenue": "Жалпы кириси",
+    "revenue_by_month": "Айлар бойынша кириси",
+    "users_growth": "Пайдаланыўшылар өсиўи",
+    "announcements_by_status": "Статус бойынша хабарландырыўлар",
+    "announcements_by_property_type": "Көшпес мүлик түри бойынша хабарландырыўлар",
+    "top_districts": "Топ районлар",
+    "post_revenue": "Хабарландырыўлардан кириси",
+    "featured_revenue": "VIP-тен кириси",
+    "new_users": "Жаңа пайдаланыўшылар",
+    "no_data": "Мағлыўмат жоқ",
+    "count": "Саны"
   }
 }

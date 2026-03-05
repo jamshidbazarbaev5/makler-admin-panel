@@ -6,6 +6,7 @@ import {
     LogOut,
     User,
     ChevronDown,
+    LayoutDashboard,
     type LucideIcon,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -73,6 +74,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     // Only include routes that exist in App.tsx
     const navItems: NavItem[] = [
+        { icon: LayoutDashboard, label: t("navigation.dashboard"), href: "/dashboard" },
         { icon: Package, label: t("navigation.announcements"), href: "/announcements" },
         // { icon: Package, label: t("navigation.notifications"), href: "/notifications" },
         // { icon: ListView, label: t("navigation.categories"), href: "/categories" },

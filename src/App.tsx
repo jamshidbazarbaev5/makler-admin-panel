@@ -19,6 +19,7 @@ import AppSettingsPage from './core/pages/AppSettingsPage'
 import CreateStaffPage from './core/pages/CreateStaffPage'
 import EditStaffPage from './core/pages/EditStaffPage'
 import UserDetailPage from './core/pages/UserDetailPage'
+import DashboardPage from './core/pages/DashboardPage'
 
 // import W9FormDemo from "./core/pages/W9FormDemo";
 // import CreateSalePos from "./core/pages/create-sale-2";
@@ -33,9 +34,19 @@ function App() {
           <Routes>
             {/* Public routes */}
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<Navigate to="/announcements" />} />
+            <Route path="/" element={<Navigate to="/dashboard" />} />
 
             {/* Protected routes wrapped in Layout */}
+            <Route 
+              path="/dashboard" 
+              element={
+                <PrivateRoute>
+                  <Layout>
+                    <DashboardPage />
+                  </Layout>
+                </PrivateRoute>
+              } 
+            />
             <Route 
               path="/categories" 
               element={
